@@ -1,0 +1,60 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:F="sap.m.FeedListItem" xmlns:f="sap.ui.layout.form" controllerName="zcnhrmecn_ta01.controller.Approval">
+	<semantic:DetailPage id="page" title="{i18n>ApprovalTitle}" navButtonPress="onNavBack" showNavButton="{device>/system/phone}"
+		busy="{approvalView>/busy}" busyIndicatorDelay="{approvalView>/delay}" class="sapUiStdPage">
+		<semantic:content>
+			<ObjectHeader id="historyHeader" responsive="true" intro="{approvalView>/title}" icon="sap-icon://hr-approval"
+				title="{parts :['Nachn','Vorna','Rufnm'], formatter:'._formatName'}">
+				<attributes>
+					<ObjectAttribute title="{i18n>EmployeeNumber}" text="{Pernr}"/>
+					<ObjectAttribute title="{i18n>StartDate}" text="{path: 'Begda', type: 'sap.ui.model.type.Date', formatOptions: { pattern : 'yyyy.MM.dd' }}"/>
+					<ObjectAttribute title="{i18n>EndDate}" text="{path: 'Endda', type: 'sap.ui.model.type.Date', formatOptions: { pattern : 'yyyy.MM.dd' }}"/>
+					<ObjectAttribute title="{i18n>SelectType}" text="{Zlvde}"/>
+					<ObjectAttribute title="{i18n>SelectType}" text="{Subty}" press="TypeInfo" id="TypeInfoId" visible="false"/>
+					<ObjectAttribute title="{i18n>StartTime}"
+						text="{path: 'Beguz', type: 'sap.ui.model.odata.type.Time', formatOptions: { pattern : 'HH:mm:ss' }}"/>
+					<ObjectAttribute title="{i18n>EndTime}"
+						text="{path: 'Enduz', type: 'sap.ui.model.odata.type.Time', formatOptions: { pattern : 'HH:mm:ss' }}"/>
+					<ObjectAttribute title="{i18n>CurrentLevel}" text="{Zlevel}"/>
+					<ObjectAttribute title="{i18n>AbsenceHours}" text="{Stdaz}"/>
+				</attributes>
+				<statuses>
+					<ObjectStatus id="objectStatus" title="{i18n>Status}" text="{StatsDes}"/>
+				</statuses>
+				<headerContainer>
+					<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+						<items>
+							<IconTabFilter icon="sap-icon://notes" text="{i18n>General}">
+								<List showSeparators="Inner">
+									<FeedListItem sender="{parts :['Nachn','Vorna','Rufnm'], formatter:'._formatName'}" icon="sap-icon://person-placeholder"
+										iconDensityAware="false" info="{Zlvde}"
+										timestamp="{path: 'Aedtm', type: 'sap.ui.model.type.Date', formatOptions: { pattern : 'yyyy.MM.dd' }} {path: 'Aenzt', type: 'sap.ui.model.odata.type.Time', formatOptions: { pattern : 'HH:mm:ss' }}"
+										text="{Znote}"/>
+								</List>
+							</IconTabFilter>
+							<IconTabFilter id="attachment" icon="sap-icon://attachment" iconColor="Neutral" text="{i18n>Attachment}" count="{approvalView>/attachCount}">
+								<List id="attachmentList" headerText="" items="{attachmentSet}" updateFinished="onUpdateFinished"
+									 includeItemInSelection="true">
+									<CustomListItem id="attachmentItem">
+										<HBox>
+											<core:Icon size="2rem" src="{parts :['Filetype'], formatter:'._formatType'}" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
+											<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+												<Link text="{Filename}.{Filetype}" target="https://bridge-mecn.ticel.cl:18020/eqiupstatus/download?path=ZCNHRMECN_LV/{Filename}.{Filetype}" press = "downloadFile"/>
+											</VBox>
+										</HBox>
+									</CustomListItem>
+								</List>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</headerContainer>
+			</ObjectHeader>
+		</semantic:content>
+		<semantic:positiveAction>
+			<semantic:PositiveAction text="{i18n>Approve}" press="onApprove"/>
+		</semantic:positiveAction>
+		<semantic:negativeAction>
+			<semantic:NegativeAction text="{i18n>Reject}" press="onReject"/>
+		</semantic:negativeAction>
+	</semantic:DetailPage>
+</mvc:View>

@@ -1,0 +1,75 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:semantic="sap.m.semantic"
+	controllerName="zcnhrmecn_ta.controller.Submit" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<semantic:MasterPage id="page" title="{i18n>appTitle}" busy="{submitView>/busy}" busyIndicatorDelay="{submitView>/delay}"
+		navButtonPress="onNavBack" showNavButton="{device>/system/phone}">
+		<semantic:content>
+				<Panel>
+					<Table items='{submitView>/newAttendCorrection}' id='idNewAttendTab' class='sapUiSmallMarginTop'>
+                    <headerToolbar>
+                      <Toolbar>
+                        <content>
+                          <Text text="{i18n>AttendCorrection}"/>
+                          <ToolbarSpacer/>
+                          <Button text="{i18n>AddNewRecord}" icon="sap-icon://add" press='_openAddNewRecord'/>
+                        </content>
+                      </Toolbar>
+                    </headerToolbar>
+                    <columns>
+                      <Column width="10rem">
+                        <Text text='{i18n>CorrDesc}'/>
+                      </Column>
+                      <Column>
+                        <Text text='{i18n>CorrDate}'/>
+                      </Column>
+                      <Column>
+                        <Text text='{i18n>Shift}'/>
+                      </Column>
+                      <Column>
+                        <Text text='{i18n>ClockInTime}'/>
+                      </Column>
+                      <Column>
+                        <Text text='{i18n>ClockOutTime}'/>
+                      </Column>
+                      <Column width="5rem" hAlign="Center">
+                        <Text text='{i18n>DayAssign}'/>
+                      </Column>
+                      <Column>
+                        <Text text='{i18n>CorrRemarks}'/>
+                      </Column>
+                    </columns>
+                    <items>
+                      <ColumnListItem>
+                        <ComboBox id="corrType" showSecondaryValues="true" selectedKey="{submitView>corrDesc}" change="onCorrDescChange">
+							<core:ListItem key="0" text="{i18n>ClockInOutTime}"/>
+							<core:ListItem key="1" text="{i18n>ClockInTime}"/>
+							<core:ListItem key="2" text="{i18n>ClockOutTime}"/>
+						</ComboBox>
+                        <DatePicker id="corrDate" valueFormat="{submitView>corrDate}" displayFormat="yyyy-MM-dd" change="handleDateChangeEvent"/>
+						<ComboBox id="inputShift" items="{path: '/workScheduleSet', templateShareable: false}" showSecondaryValues="true" selectedKey="{submitView>corrShift}">
+							<items>
+								<core:ListItem key="{Tprog}" text="{Ttext}" additionalText="{Tprog}"/>
+							</items>
+						</ComboBox>
+                        <TimePicker id="ClockInTime" value='{submitView>clockInTime}' change="onTimeChange" valueFormat="HH:mm" displayFormat="HH:mm"/>
+                        <TimePicker id="ClockOutTime" value='{submitView>clockOutTime}' change="onTimeChange" valueFormat="HH:mm" displayFormat="HH:mm"/>
+                        <Select width="4.5rem" selectedKey="{submitView>dayAssign}" forceSelection="true" change="onDayAssignChange" tooltip="{i18n>DayAssignTooltip}">
+                        	<core:Item key="+" text="+"/>
+                        	<core:Item key="-" text="-"/>
+                        </Select>
+                        <HBox>
+                          <Input value='{submitView>corrRemarks}'/>
+                          <Button icon="sap-icon://delete" type="Transparent" press='onDelTblRow' class='sapUiSmallMarginBegin'/>
+                        </HBox>
+                      </ColumnListItem>
+                    </items>
+                  </Table>
+				</Panel>
+		</semantic:content>
+		<semantic:positiveAction>
+			<semantic:PositiveAction text="{i18n>Send}" press="onSubmit" enabled="{submitView>/buttonEnabled}"/>
+		</semantic:positiveAction>
+		<semantic:customFooterContent>
+			<Button text="{i18n>Reset}" press="onReset"/>
+		</semantic:customFooterContent>
+	</semantic:MasterPage>
+</mvc:View>

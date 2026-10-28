@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>DialogTitle}" id="Msgdialog">
+		<Panel width="auto" class="sapUiTinyMargin">
+			<HBox justifyContent="Center" width="100%">
+				<Image src="{imageModel>/path}/images/checkphone.png"/>
+			</HBox>
+			<l:VerticalLayout class="sapUiContentPadding" width="100%">
+				<l:content>
+					<VBox>
+						<Input id="InputPhone" width="88%" type="Tel" maxLength="11" placeholder="{i18n>InputPhone}" valueState="{masterView>/valueState}"
+							class="sapUiSmallMarginBegin"/>
+						<Label id="labelPhone" text="" class="sapUiSmallMarginBegin color"/>
+					</VBox>
+					<HBox >
+						<Input id="InputVid" width="80%" type="Tel" maxLength="4" placeholder="{i18n>InputValidate}" class="sapUiSmallMarginBegin"
+							valueState="{masterView>/valueState1}"/>
+						<Button text="{masterView>/validatecode}" id="Sendcode" press="onCreateCode" enabled="{masterView>/buttonenabled}"
+							busy="{masterView>/busyCode}" class="radius"/>
+					</HBox>
+					<Label id="labelMsg" text="" class="sapUiSmallMarginBegin color"/>
+				</l:content>
+			</l:VerticalLayout>
+		</Panel>
+		<beginButton>
+			<Button type="Accept" text="{i18n>Enter}" press="onValidate" enabled="{masterView>/labelenabled}"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>Cancel}" press="onNavHome"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

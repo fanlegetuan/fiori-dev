@@ -1,0 +1,89 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns="sap.m" xmlns:l="sap.ui.layout"
+	controllerName="zcnhrmecn_ta.controller.History" xmlns:fb="sap.ui.comp.filterbar" xmlns:html="http://www.w3.org/1999/xhtml">
+	<semantic:MasterPage id="page" title="{i18n>HistoryTitle}" navButtonPress="onNavBack" showNavButton="{device>/system/phone}">
+		<semantic:content>
+			<l:VerticalLayout width="100%">
+				<fb:FilterBar header="{i18n>HistorySearch}" reset="onReset" search="onFilter" showRestoreButton="true">
+					<fb:filterItems>
+						<!--<fb:FilterItem name="A" label="{i18n>CorrDesc}">-->
+						<!--	<fb:control>-->
+						<!--		<ComboBox id="CbLeaveType" selectionChange="onFilter">-->
+						<!--			<items>-->
+						<!--				<core:ListItem key="0" text="{i18n>ClockInOutTime}"/>-->
+						<!--				<core:ListItem key="1" text="{i18n>ClockInTime}"/>-->
+						<!--				<core:ListItem key="2" text="{i18n>ClockOutTime}"/>-->
+						<!--			</items>-->
+						<!--		</ComboBox>-->
+						<!--	</fb:control>-->
+						<!--</fb:FilterItem>-->
+						<fb:FilterItem name="B" label="{i18n>Status}">
+							<fb:control>
+								<ComboBox id="StatusType" selectionChange="onFilter">
+									<items>
+										<core:Item key="1" text="{i18n>status_1}"/>
+										<core:Item key="2" text="{i18n>status_2}"/>
+										<core:Item key="0" text="{i18n>status_0}"/>
+										<core:Item key="3" text="{i18n>status_3}"/>
+									</items>
+								</ComboBox>
+							</fb:control>
+						</fb:FilterItem>
+						<fb:FilterItem name="C" label="{i18n>YearMoh}">
+							<fb:control>
+								<DateRangeSelection id="DatePicker" displayFormat="yyyy.MM.dd" change="onFilter"/>
+							</fb:control>
+						</fb:FilterItem>
+					</fb:filterItems>
+				</fb:FilterBar>
+			</l:VerticalLayout>
+			<Panel class="sapUiSmallMarginTop">
+				<VBox alignItems="Center">
+					<Table id="TabelList" mode="SingleSelectLeft" inset="false" items="{/attCorrHeaderSet}" fixedLayout="false" growing="true"
+						growingScrollToLoad="false" growingThreshold="10" class="sapUiSizeCompact" selectionChange="onNavDetail">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="{i18n>HistoryList}" level="H2"/>
+								<ToolbarSpacer/>
+								<Button icon="sap-icon://sys-cancel" press="onDelete" text="{i18n>Delete}" tooltip="{i18n>Deletehistory}"/>
+								<Button icon="sap-icon://excel-attachment" press="onExport" tooltip="{i18n>Export}" visible="{= !${device>/system/phone} }"/>
+								<Button icon="sap-icon://refresh" press="onRefresh" tooltip="Refresh history"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column width="18rem">
+								<Text text="{i18n>RequestNumber}"/>
+							</Column>
+							<!--<Column width="12rem" visible="{= !${device>/system/phone} }">-->
+							<!--	<Text text="{i18n>CorrDesc}"/>-->
+							<!--</Column>-->
+							<Column width="12rem" visible="{= !${device>/system/phone} }">
+								<Text text="{i18n>SubmitDate}"/>
+							</Column>
+							<Column width="12rem" visible="{= !${device>/system/phone} }">
+								<Text text="{i18n>Zlevel}"/>
+							</Column>
+							<Column width="12rem" minScreenWidth="Tablet" demandPopin="true">
+								<Text text="{i18n>Status}"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Navigation" press="onNavDetail">
+								<cells>
+									<ObjectIdentifier title="{Reqno}" text="{Zlvde}"/>
+									<!--<Text text="{path: 'Begda', type: 'sap.ui.model.type.Date', formatOptions: { pattern : 'yyyy.MM.dd' }}"/>-->
+									<!--<Text text="{path: 'Endda', type: 'sap.ui.model.type.Date', formatOptions: { pattern : 'yyyy.MM.dd' }}"/>-->
+									<!--<Text text="{path: 'Beguz', type: 'sap.ui.model.odata.type.Time', formatOptions: { pattern : 'HH:mm:ss' }}"/>-->
+									<!--<Text text="{path: 'Enduz', type: 'sap.ui.model.odata.type.Time', formatOptions: { pattern : 'HH:mm:ss' }}"/>-->
+									<Text text="{path: 'Aedtm', type: 'sap.ui.model.type.Date', formatOptions: { pattern : 'yyyy.MM.dd' }}"/>
+									<!--<Text text="{AtypeDes}"/>-->
+									<ObjectIdentifier title="{Zlevel}" text="{Mgrnm}"/>
+									<ObjectStatus text="{parts :['StatsDes','Stats'], formatter:'._formatStatusText'}" state="{parts :['Stats'], formatter:'._formatText'}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</VBox>
+			</Panel>
+		</semantic:content>
+	</semantic:MasterPage>
+</mvc:View>

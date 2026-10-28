@@ -1,0 +1,20 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="zcnhrmecn_ta.controller.Master"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:semantic="sap.m.semantic">
+	<semantic:MasterPage id="page" title="{i18n>LeaveRequestList}" navButtonPress="onNavHome" showNavButton="true">
+		<semantic:content>
+			<List id="masterList">
+				<items>
+					<ObjectListItem type="Inactive" title="{masterView>/pernr}" intro="{i18n>CurrentPernr}" id="__item2" icon="sap-icon://customer"
+						visible="{masterView>/showPernr}"/>
+					<ObjectListItem type="Navigation" title="{i18n>SubmitOTRequest}" intro="{i18n>Intro1}" id="__item1" icon="sap-icon://create-leave-request"
+						press="onSubmit"/>
+					<ObjectListItem type="Navigation" title="{i18n>RequestsHistory}" intro="{i18n>Intro2}" id="__item0" icon="sap-icon://customer-history"
+						press="onHistory"/>
+				</items>
+			</List>
+		</semantic:content>
+		<semantic:customFooterContent>
+			<Button icon="sap-icon://personnel-view" text="{i18n>GotoProfile}" tooltip="{i18n>PeopleProfile}" type="Emphasized" press="onNavMyProfile"/>
+		</semantic:customFooterContent>
+	</semantic:MasterPage>
+</mvc:View>

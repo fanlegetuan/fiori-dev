@@ -1,0 +1,15 @@
+{
+  "base": "./dist",
+  "files": "**/*.*",
+  "conn_server": "https://fiori.ticel.cl:44302",
+  "conn_client": "400",
+  "conn_user": "REPLACE_WITH_USER",
+  "conn_password": "REPLACE_WITH_PASSWORD",
+  "conn_usestrictssl": false,
+  "abap_package": "REPLACE_WITH_PACKAGE",
+  "abap_bsp": "ZCNHRMECN_TA",
+  "abap_bsp_text": "Fiori application of My Attendance Data Correction",
+  "abap_transport": "REPLACE_WITH_TRANSPORT",
+  "abap_language": "ZH",
+  "calcappindex": true
+}

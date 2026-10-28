@@ -1,0 +1,198 @@
+{
+    "_version": "1.5.0",
+    "sap.app": {
+        "id": "zcnhrmecn_ta",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "sourceTemplate": {
+            "id": "servicecatalog.connectivityComponent",
+            "version": "0.0.0"
+        },
+        "dataSources": {
+            "ZCNHRMECN_ADC_SRV": {
+                "uri": "/sap/opu/odata/sap/ZCNHRMECN_ADC_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/ZCNHRMECN_ADC_SRV/metadata.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_bluecrystal"
+        ]
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "zcnhrmecn_ta.view.App",
+            "type": "XML"
+        },
+        "dependencies": {
+            "minUI5Version": "1.30.0",
+            "libs": {
+                "sap.collaboration": {},
+                "sap.m": {},
+                "sap.suite.ui.commons": {
+                    "minVersion": ""
+                },
+                "sap.ui.comp": {},
+                "sap.ui.core": {},
+                "sap.ui.layout": {},
+                "sap.ushell": {},
+                "sap.uxap": {}
+            }
+        },
+        "contentDensities": {
+            "compact": false,
+            "cozy": true
+        },
+        "flexEnabled": false,
+        "config": {
+            "sendDallf": false
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "zcnhrmecn_ta.i18n.i18n"
+                }
+            },
+            "": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Inline"
+                },
+                "dataSource": "ZCNHRMECN_ADC_SRV",
+                "preload": true
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "viewPath": "zcnhrmecn_ta.view",
+                "controlId": "App",
+                "controlAggregation": "detailPages",
+                "routerClass": "sap.m.routing.Router"
+            },
+            "targets": {
+                "master": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "Master",
+                    "controlAggregation": "masterPages"
+                },
+                "submit": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "Submit"
+                },
+                "history": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "History"
+                },
+                "detail": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "Detail"
+                },
+                "notfound": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "NotFound"
+                }
+            },
+            "routes": [
+                {
+                    "name": "master",
+                    "pattern": "",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "submit",
+                        "master"
+                    ]
+                },
+                {
+                    "name": "submit",
+                    "pattern": "submit",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "master",
+                        "submit"
+                    ]
+                },
+                {
+                    "name": "history",
+                    "pattern": "history",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "master",
+                        "history"
+                    ]
+                },
+                {
+                    "name": "detail",
+                    "pattern": "attCorrHeaderSet/{Reqno}",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "master",
+                        "detail"
+                    ]
+                },
+                {
+                    "name": "notfound",
+                    "pattern": "notfound",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "master",
+                        "notfound"
+                    ]
+                }
+            ]
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/zcnhrmecn_ta",
+        "_version": "1.1.0"
+    }
+}

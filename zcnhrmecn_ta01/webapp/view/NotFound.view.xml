@@ -1,0 +1,4 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="zcnhrmecn_ta01.controller.BaseController">
+	<MessagePage id="page" title="{i18n>NotFound}" text="{i18n>NotFound}" icon="{sap-icon://document}"
+		description="{i18n>NotFoundDes}" showNavButton="{device>/system/phone}" navButtonPress="onNavBack"></MessagePage>
+</mvc:View>
