@@ -1,8 +1,0 @@
-# Local Fiori app trees (kept on disk, not in this skill repo)
-zcnhrmecn_ta/
-zcnhrmecn_ta01/
-.browsers/
-_skill_upload/
-node_modules/
-.env
-*.log
