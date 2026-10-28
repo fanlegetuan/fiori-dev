@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "prompt": "从我们 On Premise ABAP 把补卡 Fiori 应用 ZCNHRMECN_TA 拉到本机，用 VS Code 预览。没有 Web IDE，Download 向导是空的。",
+    "expected": "走 ADT UI5 BSP filestore 拉代码；说明 API 路径；落到本地目录；配 ui5.yaml/.env；给出 npm install 与 start-index 预览 URL。"
+  },
+  {
+    "id": 2,
+    "prompt": "本地改完了，用 nwabap-ui5uploader 部署回 ABAP，需要我准备什么？怎么跑？",
+    "expected": "列出包名、TR、BSP 名；.nwabaprc.example 与 npm run deploy:abap；提醒本地 FLP 防护勿直接上生产；不写真实密码。"
+  },
+  {
+    "id": 3,
+    "prompt": "预览打开是白板，只有导航栏没有内容，怎么排查？",
+    "expected": "按失败表排查 ushell/getComponentData、代理 401、端口、打开的 HTML；给出一线修复与仍失败兜底。"
+  }
+]

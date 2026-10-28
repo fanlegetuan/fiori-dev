@@ -1,9 +1,0 @@
-node_modules/
-dist/
-.vscode/
-.env
-*.log
-.DS_Store
-.nwabaprc
-.nwabaprc.generated
-
